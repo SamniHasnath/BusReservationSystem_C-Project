@@ -143,3 +143,54 @@ void allotment() {
         printf("Seat Booked Successfully!\n");
     }
 }
+// Show Seat Status
+void show() {
+    int bus_no, i, index;
+
+    printf("Enter Bus Number: ");
+    scanf("%d", &bus_no);
+
+    index = findBus(bus_no);
+    if(index == -1) {
+        printf("Bus not found!\n");
+        return;
+    }
+
+    printf("\nSeat Status for Bus %d\n", bus_no);
+    printf("--------------------------\n");
+
+    for(i = 0; i < 32; i++) {
+        printf("Seat %2d : %s\t", i+1, buses[index].seat[i]);
+        if((i+1) % 4 == 0)
+            printf("\n");
+    }
+}
+
+// Cancel Booking
+void cancel() {
+    int bus_no, seat_no, index;
+
+    printf("Enter Bus Number: ");
+    scanf("%d", &bus_no);
+
+    index = findBus(bus_no);
+    if(index == -1) {
+        printf("Bus not found!\n");
+        return;
+    }
+
+    printf("Enter Seat Number to Cancel: ");
+    scanf("%d", &seat_no);
+
+    if(seat_no < 1 || seat_no > 32) {
+        printf("Invalid seat number!\n");
+        return;
+    }
+
+    if(strcmp(buses[index].seat[seat_no - 1], "Empty") == 0) {
+        printf("Seat already empty!\n");
+    } else {
+        strcpy(buses[index].seat[seat_no - 1], "Empty");
+        printf("Booking Cancelled Successfully!\n");
+    }
+}
