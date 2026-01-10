@@ -97,3 +97,49 @@ void install() {
 
     printf("Bus Installed Successfully!\n");
 }
+// Display All Buses
+void display() {
+    int i;
+    printf("\nBus No\tDriver\tFrom\tTo\tArr\tDep\n");
+    printf("---------------------------------------------\n");
+
+    for(i = 0; i < total_buses; i++) {
+        printf("%d\t%s\t%s\t%s\t%s\t%s\n",
+               buses[i].bus_no,
+               buses[i].driver,
+               buses[i].from,
+               buses[i].to,
+               buses[i].arrival,
+               buses[i].departure);
+    }
+}
+
+// Book Seat
+void allotment() {
+    int bus_no, seat_no, index;
+
+    printf("Enter Bus Number: ");
+    scanf("%d", &bus_no);
+
+    index = findBus(bus_no);
+    if(index == -1) {
+        printf("Bus not found!\n");
+        return;
+    }
+
+    printf("Enter Seat Number (1-32): ");
+    scanf("%d", &seat_no);
+
+    if(seat_no < 1 || seat_no > 32) {
+        printf("Invalid seat number!\n");
+        return;
+    }
+
+    if(strcmp(buses[index].seat[seat_no - 1], "Empty") != 0) {
+        printf("Seat already booked!\n");
+    } else {
+        printf("Enter Passenger Name: ");
+        scanf("%s", buses[index].seat[seat_no - 1]);
+        printf("Seat Booked Successfully!\n");
+    }
+}
