@@ -69,9 +69,3 @@ BUS RESERVATION SYSTEM
 Samni Hasnath
 
 
----
-
-If you want, I can also help you create
-✔ GitHub repository
-✔ Project screenshots
-✔ Mini-project report format 📘
